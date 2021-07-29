@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'CreateCategory', type: :system do
-  before do
-    driven_by(:rack_test)
-  end
-
   it 'creates and shows the category' do
     visit '/categories/new'
 
