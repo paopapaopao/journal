@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
+  before_action :set_category, only: %i[ show edit update ]
+
   def show
-    @category = Category.find(params[:id])
   end
 
   def new
@@ -12,12 +13,9 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = Category.find(params[:id])
   end
 
   def update
-    @category = Category.find(params[:id])
-    
     respond_to do |format|
       if @category.update(category_params)
         format.html { redirect_to @category, notice: "Category was successfully updated." }
@@ -30,6 +28,10 @@ class CategoriesController < ApplicationController
   end
 
   private
+    def set_category
+      @category = Category.find(params[:id])
+    end
+
     def category_params
       params.require(:category).permit(:name)
     end
