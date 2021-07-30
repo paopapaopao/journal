@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'EditCategory', type: :system do
   before :all do
-    @category = Category.create!(:name => 'Hello')
+    @category = Category.create!(:name => 'World')
   end
 
   it 'edits and shows the category' do
@@ -11,6 +11,6 @@ RSpec.describe 'EditCategory', type: :system do
     click_on 'Update Category'
     expect(page).to have_content('World')
 
-    expect(category.name).to eq('World')
+    expect(@category.name).to eq('World')
   end
 end
