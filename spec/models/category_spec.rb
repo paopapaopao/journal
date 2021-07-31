@@ -1,5 +1,37 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before :all do
+    @category = Category.new
+  end
+
+  it 'has a name' do
+    @category.name = 'Name'
+
+    expect(@category).to be_valid
+  end
+
+  it 'does not have a name' do
+    @category.name = ''
+
+    expect(@category).to_not be_valid
+  end
+
+  it 'has a unique name' do
+    @category.name = 'Unique Name'
+    is_unique = Category.all.all? do |c|
+      c.name != @category.name
+    end
+
+    expect(is_unique).to eq(true)
+  end
+
+  it 'does not have a unique name' do
+    @category.name = 'Common Name'
+    is_unique = Category.all.all? do |c|
+      c.name != @category.name
+    end
+
+    expect(is_unique).to eq(false)
+  end
 end
