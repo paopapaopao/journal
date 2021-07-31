@@ -1,14 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe 'ShowCategory', type: :system do
+RSpec.describe 'Show Category', type: :system do
   before :all do
-    @category = Category.create!(:name => 'Hello')
+    Category.destroy_all
+    @category = Category.create(name: 'Name')
   end
 
-  it 'shows the category' do
-    visit "/categories/#{@category.id}"
-    expect(page).to have_content('Hello')
+  it 'Shows the category' do
+    visit(category_path(@category.id))
 
-    expect(@category.name).to eq('Hello')
+    expect(@category.name).to eq('Name')
+    expect(page).to have_content('Name')
   end
 end
