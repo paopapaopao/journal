@@ -19,19 +19,13 @@ RSpec.describe Category, type: :model do
 
   it 'has a unique name' do
     @category.name = 'Unique Name'
-    is_unique = Category.all.all? do |c|
-      c.name != @category.name
-    end
 
-    expect(is_unique).to eq(true)
+    expect(@category).to be_valid
   end
 
   it 'does not have a unique name' do
     @category.name = 'Common Name'
-    is_unique = Category.all.all? do |c|
-      c.name != @category.name
-    end
 
-    expect(is_unique).to eq(false)
+    expect(@category).to_not be_valid
   end
 end
