@@ -1,38 +1,42 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-  before :all do
-    @new_category = Category.new
+  subject do
+    described_class.new
   end
 
-  context 'Name validation' do
-    context 'Without errors' do
-      it 'Name is present' do
-        @new_category.name = 'Name'
+  let :existing_category do
+    described_class.create(name: 'Not a unique Name')
+  end
 
-        expect(@new_category).to be_valid
-      end
-
-      it 'Name is unique' do
-        @new_category.name = 'Unique Name'
-
-        expect(@new_category).to be_valid
+  context 'Name is not present' do
+    context "Name is nil" do
+      it 'does not validate' do
+        subject.name = nil
+        expect(subject).to_not be_valid
       end
     end
 
-    context 'With errors' do
-      it 'Name is not present' do
-        @new_category.name = ''
-
-        expect(@new_category).to_not be_valid
+    context 'Name is an empty string' do
+      it 'does not validate' do
+        subject.name = ''
+        expect(subject).to_not be_valid
       end
+    end
+  end
 
-      it 'Name is not unique' do
-        existing_category = Category.create(name: 'Not a unique Name')
-        @new_category.name = 'Not a unique Name'
+  context 'Name is not unique' do
+    it 'does not validate' do
+      existing_category
+      subject.name = 'Not a unique Name'
+      expect(subject).to_not be_valid
+    end
+  end
 
-        expect(@new_category).to_not be_valid
-      end
+  context 'Name is unique' do
+    it 'does validate' do
+      subject.name = 'Unique Name'
+      expect(subject).to be_valid
     end
   end
 end
