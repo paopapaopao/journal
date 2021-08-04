@@ -2,6 +2,7 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: %i[ show edit update destroy ]
 
   def index
+    @categories = Category.all
   end
 
   def show
@@ -9,6 +10,9 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
+  end
+
+  def edit
   end
 
   def create
@@ -25,9 +29,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
     respond_to do |format|
       if @category.update(category_params)
@@ -41,7 +42,11 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @article.destroy
+    @category.destroy
+    respond_to do |format|
+      format.html { redirect_to categories_url, notice: "Category was successfully destroyed." }
+      format.json { head :no_content }
+    end
   end
 
   private
