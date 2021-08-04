@@ -93,7 +93,7 @@ RSpec.describe 'Categories', type: :request do
         }.to change(Category, :count).by(1)
       end
 
-      it "redirects to the created task" do
+      it "redirects to the created category" do
         post categories_path, params: { category: valid_attributes }
         expect(response).to redirect_to(category_path(Category.last))
       end
@@ -149,14 +149,14 @@ RSpec.describe 'Categories', type: :request do
     #   expect(response).to redirect_to(root_path)
     # end
 
-    it "destroys the requested task" do
+    it "destroys the requested category" do
       subject_save
       expect {
         delete category_path(subject)
       }.to change(Category, :count).by(-1)
     end
 
-    it "redirects to the tasks list" do
+    it "redirects to the categories list" do
       subject_save
       delete category_path(subject)
       expect(response).to redirect_to(categories_path)
