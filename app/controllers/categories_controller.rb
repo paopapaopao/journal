@@ -40,6 +40,9 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def destroy
+  end
+
   private
     def set_category
       @category = Category.find(params[:id])
