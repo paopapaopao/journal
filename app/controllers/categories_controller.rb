@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[ show edit update ]
+  before_action :set_category, only: %i[ show edit update destroy ]
 
   def index
   end
@@ -41,6 +41,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
+    @article.destroy
   end
 
   private
