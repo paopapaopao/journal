@@ -13,18 +13,12 @@ RSpec.describe Category, type: :model do
   let(:category_on_tasks) { Category.reflect_on_association(:tasks).macro }
 
   context 'When title is not present' do
-    context 'It is nil' do
-      it do
-        subject.title = nil
-        expect(subject).to_not be_valid
-      end
-    end
+    it do
+      subject.title = nil
+      expect(subject).to_not be_valid
 
-    context 'It is an empty string' do
-      it do
-        subject.title = ''
-        expect(subject).to_not be_valid
-      end
+      subject.title = ''
+      expect(subject).to_not be_valid
     end
   end
 
@@ -44,36 +38,26 @@ RSpec.describe Category, type: :model do
   end
 
   context 'When description is not present' do
-    context 'It is nil' do
-      it do
-        subject.description = nil
-        expect(subject).to_not be_valid
-      end
-    end
-
-    context 'It is an empty string' do
-      it do
-        subject.description = ''
-        expect(subject).to_not be_valid
-      end
-    end
-  end
-
-  context 'When description is shorter than minimum' do
     it do
-      subject.description = 'a' * 9
+      subject.description = nil
+      expect(subject).to_not be_valid
+
+      subject.description = ''
       expect(subject).to_not be_valid
     end
   end
 
-  context 'When description is longer than maximum' do
+  context 'When description length is not within minimum and maximum' do
     it do
+      subject.description = 'a' * 9
+      expect(subject).to_not be_valid
+
       subject.description = 'a' * 101
       expect(subject).to_not be_valid
     end
   end
 
-  context 'When description is between minimum and maximum' do
+  context 'When description length is within minimum and maximum' do
     it do
       subject.description = 'a' * 50
       expect(subject).to_not be_valid
