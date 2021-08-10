@@ -6,7 +6,7 @@ RSpec.describe Category, type: :model do
   let :existing_category do
     described_class.create(
       title: 'not a unique title',
-      description: 'a' * 50
+      description: 'a' * 55
     )
   end
 
@@ -59,7 +59,10 @@ RSpec.describe Category, type: :model do
 
   context 'When description length is within minimum and maximum' do
     it do
-      subject.description = 'a' * 50
+      subject.description = 'a' * 10
+      expect(subject).to_not be_valid
+
+      subject.description = 'a' * 100
       expect(subject).to_not be_valid
     end
   end
@@ -67,7 +70,7 @@ RSpec.describe Category, type: :model do
   context 'When title and description are valid' do
     it do
       subject.title = 'unique title'
-      subject.description = 'a' * 50
+      subject.description = 'a' * 20
       expect(subject).to be_valid
     end
   end
