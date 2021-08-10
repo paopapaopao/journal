@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Categories', type: :request do
-  subject { Category.new(valid_attributes) }
+  subject { Category.create(valid_attributes) }
 
   let :valid_attributes do
     {
@@ -22,11 +22,7 @@ RSpec.describe 'Categories', type: :request do
     }
   end
 
-  let(:subject_save) { subject.save }
-
-  before :each do
-    Category.destroy_all
-  end
+  before(:each) { Category.destroy_all }
 
   describe 'GET /index' do
     it do
@@ -39,7 +35,6 @@ RSpec.describe 'Categories', type: :request do
 
   describe 'GET /show' do
     it do
-      subject_save
       get category_path(subject)
       expect(response).to be_successful
       expect(response).to have_http_status(:ok)
@@ -58,7 +53,6 @@ RSpec.describe 'Categories', type: :request do
 
   describe 'GET /edit' do
     it do
-      subject_save
       get edit_category_path(subject)
       expect(response).to be_successful
       expect(response).to have_http_status(:ok)
@@ -90,8 +84,6 @@ RSpec.describe 'Categories', type: :request do
   end
 
   describe 'PATCH /update' do
-    before(:each) { subject_save }
-
     context 'With invalid parameters' do
       it do
         patch category_path(subject), params: { category: invalid_attributes }
@@ -113,7 +105,6 @@ RSpec.describe 'Categories', type: :request do
 
   describe 'DELETE /destroy' do
     it do
-      subject_save
       delete category_path(subject)
       # ? got false ?
       # expect(response).to be_successful
