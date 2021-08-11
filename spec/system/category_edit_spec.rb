@@ -60,7 +60,6 @@ RSpec.describe 'Category Edit', type: :system do
       fill_in 'Title', with: 'edited title'
       fill_in 'Description', with: 'a' * 20
       click_button('Update Category')
-      expect(page).to have_text('Category was successfully updated.')
       expect(page).to have_current_path(category_path(subject))
     end
   end
