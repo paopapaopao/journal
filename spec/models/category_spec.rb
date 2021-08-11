@@ -70,7 +70,7 @@ RSpec.describe Category, type: :model do
   context 'When title and description are valid' do
     it do
       subject.title = 'unique title'
-      subject.description = 'a' * 20
+      subject.description = 'a' * 55
       expect(subject).to be_valid
     end
   end
