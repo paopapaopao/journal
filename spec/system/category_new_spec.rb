@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Create Category', type: :system do
+RSpec.describe 'Category New', type: :system do
   let :existing_category do
     Category.create(
       title: 'not a unique title',
