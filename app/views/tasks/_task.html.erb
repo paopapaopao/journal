@@ -1,0 +1,10 @@
+<p>
+  <b>Description:</b>
+  <%= task.description %>
+</p>
+
+<p>
+  <%= link_to 'Destroy Task', [task.category, task],
+              confirm: 'Are you sure?',
+              method: :delete %>
+</p>
