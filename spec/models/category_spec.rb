@@ -12,6 +12,8 @@ RSpec.describe Category, type: :model do
 
   let(:category_on_tasks) { Category.reflect_on_association(:tasks).macro }
 
+  before(:all) { Category.destroy_all }
+
   context 'When title is not present' do
     it do
       subject.title = nil
