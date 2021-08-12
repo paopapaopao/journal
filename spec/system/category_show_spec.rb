@@ -35,8 +35,8 @@ RSpec.describe 'Category Show', type: :system do
   context 'Clicks Back' do
     it do
       click_link 'Back'
-      expect(page).to have_text('Categories')
-      expect(page).to have_current_path(categories_path)
+      expect(page).to have_text 'Categories'
+      expect(page).to have_current_path categories_path
     end
   end
 end
