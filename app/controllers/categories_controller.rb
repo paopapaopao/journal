@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
 
   def index
-    @categories = Category.all
+    @categories = current_user.categories
   end
 
   def show
