@@ -8,12 +8,12 @@ class TasksController < ApplicationController
   def destroy
     @category = Category.find(params[:category_id])
     @task = @category.tasks.find(params[:id])
-    @task = destroy
-    redirect_to category_path(category)
+    @task.destroy
+    redirect_to category_path(@category)
   end
 
   private
     def task_params
-      params.require(:task).permit(:description)
+      params.require(:task).permit(:description, :due_date)
     end
 end
