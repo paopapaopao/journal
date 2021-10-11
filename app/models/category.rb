@@ -6,4 +6,6 @@ class Category < ApplicationRecord
 
   belongs_to :user
   has_many :tasks, dependent: :destroy
+
+  scope :filtered, ->(query_params) { Category::Filter.new.filter(self, query_params) }
 end
