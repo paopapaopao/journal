@@ -3,7 +3,8 @@ class CategoriesController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
 
   def index
-    @categories = current_user.categories
+    # @categories = current_user.categories
+    @categories = Category.filtered(query_params)
   end
 
   def show
@@ -48,5 +49,10 @@ class CategoriesController < ApplicationController
 
     def category_params
       params.require(:category).permit(:title, :description)
+    end
+
+    def query_params
+      query_params = params[:query]
+      query_params ? query_params.permit(:title, :description) : {}
     end
 end
