@@ -61,5 +61,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rails-controller-testing'
 
 gem 'devise'
-gem 'filterrific'
 gem "haml-rails", "~> 2.0"
