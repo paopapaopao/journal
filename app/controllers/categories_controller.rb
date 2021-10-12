@@ -3,8 +3,8 @@ class CategoriesController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
 
   def index
-    # @categories = current_user.categories
-    @categories = Category.filtered(query_params)
+    @categories = current_user.categories
+    @categories = @categories.filtered(query_params)
   end
 
   def show
