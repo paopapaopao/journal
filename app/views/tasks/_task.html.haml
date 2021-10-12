@@ -1,13 +1,12 @@
-%p
-  %b Description:
-  = task.description
-  %br/
-  %b Due Date:
-  = task.due_date
-  %br/
-  %b Status:
-  = task.status
-%p
-  = link_to 'Destroy Task', [task.category, task], |
-    confirm: 'Are you sure?',                      |
-    method: :delete                                |
+.card
+  .card-body
+    %p
+      %b Task:
+      = task.description
+    %p
+      %b Due Date:
+      = task.due_date
+    %p
+      %b Status:
+      = task.status
+    = button_to 'Destroy', [task.category, task], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"

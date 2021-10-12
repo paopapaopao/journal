@@ -1,17 +1,21 @@
 %p#notice= notice
+
 %p
-  %strong ID:
-  = @category.id
+  %h2
+    Title:
+    = @category.title
+  %h4
+    Description:
+    = @category.description
+
 %p
-  %strong Title:
-  = @category.title
+  %h2 Tasks
+  = render @category.tasks
+
 %p
-  %strong Description:
-  = @category.description
-%h2 Tasks
-= render @category.tasks
-%h2 Add a task:
-= render "tasks/form"
-= link_to 'Edit', edit_category_path(@category)
-|
-= link_to 'Back', categories_path
+  %h2 New Task
+  = render "tasks/form"
+
+.btn-group
+  = button_to 'Edit', edit_category_path(@category), method: :get, class: "btn btn-primary"
+  = button_to 'Back', categories_path, method: :get, class: "btn btn-warning"
