@@ -12,6 +12,9 @@
           %li.nav-item
             %a.nav-link{:href => "/categories/new"} New Category
           %li.nav-item
+            %a.nav-link{:href => "#"}
+              = current_user.email
+          %li.nav-item
             %a.nav-link{"data-method" => "delete", :href => "/users/sign_out", :rel => "nofollow", data: { confirm: 'Are you sure you want to sign out?' } } Sign Out
         - else
           %li.nav-item
