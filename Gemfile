@@ -62,3 +62,4 @@ gem 'rails-controller-testing'
 
 gem 'devise'
 gem 'filterrific'
+gem "haml-rails", "~> 2.0"
