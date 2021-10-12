@@ -1,0 +1,13 @@
+%p
+  %b Description:
+  = task.description
+  %br/
+  %b Due Date:
+  = task.due_date
+  %br/
+  %b Status:
+  = task.status
+%p
+  = link_to 'Destroy Task', [task.category, task], |
+    confirm: 'Are you sure?',                      |
+    method: :delete                                |

@@ -1,0 +1,18 @@
+- @category.tasks.build
+= form_with(model: category) do |form|
+  - if category.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(category.errors.count, "error")
+        prohibited this category from being saved:
+      %ul
+        - category.errors.each do |error|
+          %li= error.full_message
+  .form-group
+    = form.label :title, class: "form-label"
+    = form.text_field :title, class: "form-control"
+  .form-group
+    = form.label :description, class: "form-label"
+    = form.text_field :description, class: "form-control"
+  .actions
+    = form.submit

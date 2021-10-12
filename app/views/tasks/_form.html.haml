@@ -1,0 +1,26 @@
+= form_for([@category, @category.tasks.build]) do |f|
+  .field
+    = f.label :description
+    %br/
+    = f.text_area :description
+  .field
+    = f.label :due_date
+    %br/
+    = f.date_field :due_date
+  .field
+    = f.label :status
+    %br/
+    = f.radio_button :status, "unfinished", :checked => true
+    = f.label :status_unfinished if false
+    %label{:for => "task_status_unfinished"} Unfinished
+    %br/
+    = f.radio_button :status, "in_progress"
+    = f.label :status_in_progress if false
+    %label{:for => "task_status_in_progress"} In Progress
+    %br/
+    = f.radio_button :status, "completed"
+    = f.label :status_completed if false
+    %label{:for => "task_status_completed"} Completed
+    %br/
+  .actions
+    = f.submit

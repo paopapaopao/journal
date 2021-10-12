@@ -1,0 +1,17 @@
+%p#notice= notice
+%p
+  %strong ID:
+  = @category.id
+%p
+  %strong Title:
+  = @category.title
+%p
+  %strong Description:
+  = @category.description
+%h2 Tasks
+= render @category.tasks
+%h2 Add a task:
+= render "tasks/form"
+= link_to 'Edit', edit_category_path(@category)
+|
+= link_to 'Back', categories_path
