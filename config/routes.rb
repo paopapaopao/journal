@@ -11,4 +11,8 @@ Rails.application.routes.draw do
     end
     resources :tasks
   end
+
+  authenticate :user, lambda { |u| u.admin == true } do
+    mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  end
 end
