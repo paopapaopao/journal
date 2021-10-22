@@ -3,8 +3,7 @@ class CategoriesController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
 
   def index
-    @categories = current_user.categories
-    @categories = @categories.filtered(query_params)
+    @categories = current_user.categories.filtered(query_params).order(updated_at: :desc)
   end
 
   def show
@@ -21,10 +20,16 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
     @category.user_id = current_user.id
 
-    if @category.save
-      redirect_to @category
-    else
-      render :new
+    respond_to do |format|
+      if @category.save
+        format.html { redirect_to @category, notice: "Category was successfully created." }
+        format.json { render :show, status: :created, location: @category }
+        format.js
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @category.errors, status: :unprocessable_entity }
+        format.js
+      end
     end
   end
 
