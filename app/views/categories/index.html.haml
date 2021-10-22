@@ -6,25 +6,18 @@
   .actions
     = f.submit 'Search'
 
+= link_to 'New Category', new_category_path, class: "btn btn-primary", data: { bs_toggle: 'modal', bs_target: '#newCategoryModal', remote: true }
+
+-# Modal
+#newCategoryModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "newCategoryModalLabel", tabindex: "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h5#newCategoryModalLabel.modal-title New Category
+        %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", type: "button"}
+      #newCategoryForm
+
 %h1 Categories
-- @categories.each do |category|
-  %h4= link_to category.title, category
-  %h6= category.description
-  .btn-group
-    = button_to 'Edit', edit_category_path(category), method: :get, class: "btn btn-primary"
-    = button_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
-  %table.table.table-bordered.table-hover.table-dark
-    %thead
-      %tr
-        %th Task
-        %th Due Date
-        %th Status
-        %th{:colspan => "3"}
-    %tbody
-      - category.tasks.each do |task|
-        %tr
-          %td= task.description
-          %td= task.due_date
-          %td= task.status
-          %td
-            = link_to 'Destroy', [task.category, task], confirm: 'Are you sure?', method: :delete
+#categories
+  - @categories.each do |category|
+    = render 'category', category: category

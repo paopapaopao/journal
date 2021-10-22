@@ -1,0 +1,5 @@
+- if @category.errors.any?
+  alert('Error');
+- else
+  $("#categories").prepend("#{escape_javascript render('category', category: @category)}");
+  $(".btn-close").click();
