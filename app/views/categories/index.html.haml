@@ -18,5 +18,6 @@
       #newCategoryForm
 
 %h1 Categories
-- @categories.each do |category|
-  = render 'category', category: category
+#categories
+  - @categories.each do |category|
+    = render 'category', category: category
