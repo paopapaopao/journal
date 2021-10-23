@@ -17,6 +17,15 @@
         %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", type: "button"}
       #newCategoryForm
 
+-# edit category modal
+#editCategoryModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "editCategoryModalLabel", tabindex: "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h5#editCategoryModalLabel.modal-title Edit Category
+        %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", type: "button"}
+      #editCategoryForm
+
 %h1 Categories
 #categories
   - @categories.each do |category|

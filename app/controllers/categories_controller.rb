@@ -34,10 +34,16 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    if @category.update(category_params)
-      redirect_to @category
-    else
-      render :edit
+    respond_to do |format|
+      if @category.update(category_params)
+        format.html { redirect_to @category, notice: "Article was successfully updated." }
+        format.json { render :show, status: :ok, location: @category }
+        format.js
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @category.errors, status: :unprocessable_entity }
+        format.js
+      end
     end
   end
 
