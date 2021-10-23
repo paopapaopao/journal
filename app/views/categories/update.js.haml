@@ -1,0 +1,5 @@
+- if @category.errors.any?
+  alert('Error');
+- else
+  $("#category-#{@category.id}").replaceWith("#{escape_javascript render('category', category: @category)}");
+  $(".btn-close").click();
