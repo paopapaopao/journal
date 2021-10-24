@@ -4,7 +4,7 @@
     %h6.card-text= category.description
     .btn-group
       = link_to 'Edit', edit_category_path(category), data: { bs_toggle: 'modal', bs_target: '#editCategoryModal', remote: true }, class: "btn btn-primary"
-      = button_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"
+      = link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-danger"
     %table.table.table-bordered.table-hover.table-dark
       %thead
         %tr
