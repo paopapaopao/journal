@@ -8,7 +8,7 @@
 
 = link_to 'New Category', new_category_path, class: "btn btn-primary", data: { bs_toggle: 'modal', bs_target: '#newCategoryModal', remote: true }
 
--# Modal
+-# new category modal
 #newCategoryModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "newCategoryModalLabel", tabindex: "-1"}
   .modal-dialog
     .modal-content
@@ -25,6 +25,15 @@
         %h5#editCategoryModalLabel.modal-title Edit Category
         %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", type: "button"}
       #editCategoryForm
+
+-# show category modal
+#showCategoryModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "showCategoryModalLabel", tabindex: "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %h5#showCategoryModalLabel.modal-title Show Category
+        %button.btn-close{"aria-label" => "Close", "data-bs-dismiss" => "modal", type: "button"}
+      #showCategory
 
 %h1 Categories
 #categories
