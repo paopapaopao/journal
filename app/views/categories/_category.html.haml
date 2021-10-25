@@ -1,7 +1,9 @@
 %div{id: "category-#{category.id}", class: "card"}
   .card-body
-    %h4.card-title= link_to category.title, category
-    %h6.card-text= category.description
+    %h4.card-title
+      = link_to category.title, category, data: { bs_toggle: 'modal', bs_target: '#showCategoryModal', remote: false }
+    %h6.card-text
+      = category.description
     .btn-group
       = link_to 'Edit', edit_category_path(category), data: { bs_toggle: 'modal', bs_target: '#editCategoryModal', remote: true }, class: "btn btn-primary"
       = link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?', remote: true }, class: "btn btn-danger"
