@@ -24,5 +24,5 @@ Things you may want to cover:
 * ...
 
 * Defaut database values / Seeds:
-  * User1: email: "testuser@example.com", password: "password"
+  * User: email: "testuser@example.com", password: "password"
 
